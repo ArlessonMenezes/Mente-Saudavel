@@ -54,8 +54,5 @@ app.use('/', cadastroController);
 app.use('/', meetingController);
 app.use('/', liveChatController);
 
-//servidor
-app.listen(3030, () => console.log('Servidor ON'));
-
-//Servidor socket.io
-http.listen(3000, () => console.log('socket.io rodando'));
+//Servidor
+http.listen(3000, () => console.log('servidor ON'));
