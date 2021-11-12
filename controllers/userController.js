@@ -1,7 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const Paciente = require('../models/Paciente');
+const adminAuth = require('../middleware/adminAuth');
 const bcrypt = require('bcryptjs');
+const session = require('express-session');
 
 
 router.get('/', (rq, res) => {
@@ -9,10 +11,13 @@ router.get('/', (rq, res) => {
 });
 
 router.get('/admin', (req, res) => {
-    res.render('admin', { usuario: req.session.user.nome });
+    Paciente.findOne().then(user => {
+        res.render('admin', { id: user.id })
+    })
+        
 })
 
-//Login
+//Autenticação
 router.post('/authenticate', (req, res) => {
     let email = req.body.lemail;
     let senha = req.body.lsenha;
@@ -24,11 +29,11 @@ router.post('/authenticate', (req, res) => {
             if(correct) {
                 req.session.user = {
                     id: user.id,
-                    email: user.email,
-                    nome: user.nome
+                    nome: user.nome,
+                    email: user.email
                 }
                 
-                res.render('admin', { usuario: req.session.user.nome }); //Lembrar de enviar para a pagina de escolha;
+                res.render('admin', { id: req.session.user.id }); //Lembrar de enviar para a pagina de escolha;
             } else {
                 res.send("<script>alert('Senha inválida'); window.location.href = '/'; </script>"); 
             }
@@ -38,6 +43,51 @@ router.post('/authenticate', (req, res) => {
         }
     });
 });
+
+router.get('/perfil/:id', adminAuth.authenticate, (req, res) => {
+      
+    let id = req.params.id
+    
+    if(isNaN(id)) {
+        res.redirect('/admin');
+    } else {
+
+        Paciente.findByPk(id).then(user => {
+            if(user != undefined) {
+                res.render('editUser', { user: user });
+            } else {
+                res.redirect('/admin');
+            }
+        }).catch(() => {
+            res.redirect('/admin');
+        })    
+    }
+    
+})
+
+router.post('/atualizar', (req, res) => {
+    let id = req.body.id;
+    let nome = req.body.nome;
+    let email = req.body.email;
+    let endereco = req.body.endereco;
+    let cidade = req.body.cidade;
+    let estado = req.body.estado;
+
+    Paciente.update({ 
+            nome: nome, 
+            email: email,
+            endereco: endereco,
+            cidade: cidade,
+            estado: estado}, {
+                where:{
+                    id: id
+                }
+    }).then(() => {
+        res.send("<script>alert('Perfil atualizado'); window.location.href = '/admin'; </script>"); 
+    }).catch(() => {
+        res.send("<script>alert('Erro ao atualizar perfil'); window.location.href = '/admin'; </script>"); 
+    })
+})
 
 //Logout
 router.get('/logout', (req, res) => {

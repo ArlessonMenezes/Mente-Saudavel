@@ -12,7 +12,9 @@ router.post('/cadastro/save', (req, res) => {
     let email = req.body.email;
     let senha = req.body.senha;
     let salt = bcrypt.genSaltSync(10);
-    let hash = bcrypt.hashSync(senha);
+    let hash = bcrypt.hashSync(senha, salt);
+    let cnpj = req.body.cnpj;
+    let matricula = req.body.matricula;
     let endereco = req.body.endereco;
     let cidade = req.body.cidade;
     let estado = req.body.estado;
@@ -22,15 +24,17 @@ router.post('/cadastro/save', (req, res) => {
         nome: nome,
         email: email,
         senha: hash,
+        cnpj: cnpj,
+        matricula: matricula,
         endereco: endereco,
         cidade: cidade,
         estado: estado,
         cpf: cpf
     }).then(() => {
-        res.redirect('/')
+        res.send("<script>alert('Usuário cadastrado'); window.location.href = '/'; </script>"); 
+    }).catch(() => {
+        res.redirect('/');
     })
 })
-
-
 
 module.exports = router;

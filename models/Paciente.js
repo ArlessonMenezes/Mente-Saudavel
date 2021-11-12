@@ -15,6 +15,14 @@ const Paciente = connection.define('paciente', {
         type: Sequelize.STRING,
               allowNull: false
     },
+    cnpj: {
+        type: Sequelize.STRING,
+              allowNull: false
+    },
+    matricula: {
+        type: Sequelize.STRING,
+              allowNull: false
+    },
     endereco: { 
         type: Sequelize.STRING,
               allowNull: false
@@ -33,5 +41,5 @@ const Paciente = connection.define('paciente', {
     }
 })
 
-Paciente.sync({ force: false });
+Paciente.sync({ alter: true });
 module.exports = Paciente;

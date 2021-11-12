@@ -2,10 +2,9 @@
 const express = require('express');
 const app = express();
 const session = require('express-session');
-
-//Socket.io
 const http = require('http').createServer(app);
 
+//Socket.io
 const io = require('socket.io')(http, {
     cors: {
         origin: "http://localhost:3000/",

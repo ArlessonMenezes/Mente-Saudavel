@@ -4,7 +4,7 @@
 <body>
     <div class="container col-9">
         <div id="iner" class="card card-header"> 
-            <h4 style="color: aliceblue;">Cadastro</h4>
+            <h3 style="color: #fff; font-weight: 600;">Cadastro</h3>
             <div class="img">
                 <img width="50px" height="50px" id="avata" src="img/user.png" alt="">
             </div>
@@ -23,9 +23,17 @@
                       <label for="inputPassword4" class="form-label">Senha</label>
                       <input type="password" class="form-control" id="inputPassword" placeholder="senha..." name="senha">
                     </div>
-                    <div class="col-md-6">
+                      <div class="col-md-6">
                         <label for="inputPassword4" class="form-label">Confirmar senha</label>
                         <input type="password" class="form-control" id="inputPasswordConfirm" placeholder="confirmar senha..." name="confirmSenha">
+                      </div>
+                      <div class="col-md-6">
+                        <label for="inputPassword4" class="form-label">CNPJ</label>
+                        <input type="text" class="form-control" id="cnpj" placeholder="campo voltado para instituições de ensino" name="cnpj">
+                      </div>
+                      <div class="col-md-6">
+                        <label for="inputPassword4" class="form-label">Matricula</label>
+                        <input type="text" class="form-control" id="matricula" placeholder="ccampo voltado para instituições de ensino" name="matricula">
                       </div>
                     <div class="col-12">
                       <label for="inputAddress" class="form-label">Endereço</label>
@@ -77,7 +85,8 @@
                       <div class="form-check">
                         <input class="form-check-input" type="checkbox" id="gridCheck">
                         <label class="form-check-label" for="gridCheck">
-                          Confirme o cadastro
+                          Concordo com os termos -
+                          <a style="font-size: 13px;" href="https://www.gov.br/mme/pt-br/servicos/TermodeDeclaraodeConcordnciaeVeracidade.pdf">Termo</a>
                         </label>
                       </div>
                     </div>
@@ -91,6 +100,7 @@
                 <br>
         </div>
     </div>
+    <hr>
 </body>
 <script>
     
