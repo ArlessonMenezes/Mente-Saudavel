@@ -2,7 +2,8 @@ body {
     background-image: url('../img/img06.jpg');
     background-repeat: no-repeat;
     background-position: center;
-    background-size: cover;
+    background-size:cover;
+    padding-bottom: 0;
 }
 
 section {

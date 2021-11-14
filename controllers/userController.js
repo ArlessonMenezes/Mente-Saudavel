@@ -11,10 +11,7 @@ router.get('/', (rq, res) => {
 });
 
 router.get('/admin', (req, res) => {
-    Paciente.findOne().then(user => {
-        res.render('admin', { id: user.id })
-    })
-        
+    res.render('admin', { id: req.session.user.id, nome: req.session.user.nome })
 })
 
 //Autenticação
@@ -33,7 +30,7 @@ router.post('/authenticate', (req, res) => {
                     email: user.email
                 }
                 
-                res.render('admin', { id: req.session.user.id }); //Lembrar de enviar para a pagina de escolha;
+                res.render('admin', { id: req.session.user.id, nome: req.session.user.nome }); //Lembrar de enviar para a pagina de escolha;
             } else {
                 res.send("<script>alert('Senha inválida'); window.location.href = '/'; </script>"); 
             }

@@ -2,7 +2,7 @@ const Sequelize = require('Sequelize');
 const connection = require('../database/database');
 
 
-const Paciente = connection.define('paciente', {
+const Paciente = connection.define('users', {
     nome: { 
         type: Sequelize.STRING,
               allowNull: false
@@ -38,8 +38,16 @@ const Paciente = connection.define('paciente', {
     cpf: { 
         type: Sequelize.TEXT,
               allowNull: false
+    },
+    cfp: { 
+        type: Sequelize.TEXT,
+              allowNull: false
+    },
+    crm: { 
+        type: Sequelize.TEXT,
+              allowNull: false
     }
 })
 
-Paciente.sync({ alter: true });
+Paciente.sync({ force: false });
 module.exports = Paciente;

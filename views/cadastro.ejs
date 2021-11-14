@@ -5,8 +5,8 @@
     <div class="container col-9">
         <div id="iner" class="card card-header"> 
             <h3 style="color: #fff; font-weight: 600;">Cadastro</h3>
-            <div class="img">
-                <img width="50px" height="50px" id="avata" src="img/user.png" alt="">
+            <div class="" style="display: flex; justify-content: center;">
+                <i class="bi bi-person-circle fs-1" style="color: #fff;"></i>
             </div>
         </div>
             <div class="card card-body needs-validation">
@@ -43,7 +43,7 @@
                       <label for="inputCity" class="form-label">Cidade</label>
                       <input type="text" class="form-control" id="inputCity" name="cidade">
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                       <label for="inputState" class="form-label">Estado</label>
                       <select name="estado" id="inputState" class="form-select">
                         <option selected>Estado...</option>
@@ -77,10 +77,22 @@
                         <option value="EX">Estrangeiro</option>    
                       </select>
                     </div>
-                    <div class="col-md-2">
+                    
+                    <div class="col-md-4">
                       <label for="inputZip" class="form-label">CPF</label>
                       <input name="cpf" type="text" class="form-control" id="inputZip">
                     </div>
+
+                    <div class="col-md-4">
+                      <label for="inputZip" class="form-label">CFP</label>
+                      <input name="cfp" type="text" class="form-control" id="inputZip" placeholder="psicólogo">
+                    </div>
+
+                    <div class="col-md-4">
+                      <label for="inputZip" class="form-label">CRM</label>
+                      <input name="crm" type="text" class="form-control" id="inputZip" placeholder="psiquiátra">
+                    </div>
+
                     <div class="col-12">
                       <div class="form-check">
                         <input class="form-check-input" type="checkbox" id="gridCheck">
