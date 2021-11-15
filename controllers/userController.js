@@ -86,6 +86,10 @@ router.post('/atualizar', (req, res) => {
     })
 })
 
+router.get('/agendamento', (req, res) => {
+    res.render('agendamento')
+})
+
 //Logout
 router.get('/logout', (req, res) => {
     req.session.user = undefined;
