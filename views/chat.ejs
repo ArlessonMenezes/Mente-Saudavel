@@ -47,14 +47,16 @@
 
         <label for="msg">Campo de mensagem:</label>
         <textarea class="form-control" placeholder="Digite sua mensagem..." name="" id="msg"  style="resize: none;"></textarea><br>
-        <div class="d-grid gap-2"> 
+        <div class="d-grid mx-auto col-6"> 
             <button class="btn btn-primary" onclick="enviar()">Enviar</button>
+        </div>
+        <div style="margin-top: 5px;">
             <a href="/admin" class="btn btn-dark btn-sm">Sair</a>
         </div>
     </div>
 
   
-
+<hr>
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.2.0/socket.io.js"></script>
 

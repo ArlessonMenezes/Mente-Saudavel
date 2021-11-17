@@ -16,7 +16,15 @@
                 <div class="card">
                     <div class="card-header" style="text-align: center; background-color: #b2e0cb;">
                         <label for="data"><h4>Agende uma data para sua consulta</h4></label>
-                        <input class="form-control text-center" type="date" name="data" id="dtAgenda" min="2021-04-01" required />
+                        <div class="row justify-content-center mt-1">
+                          <div class="col-7">
+                            <select class="form-select" name="medico" id="medico">
+                              <option value="psicologo">Psicólogo</option>
+                              <option value="psquiatra">Psiquiatra</option>
+                            </select>
+                            <input class="form-control text-center mt-1" type="date" name="data" id="dtAgenda" min="2021-04-01" required />
+                        </div>
+                      </div>
                     </div>
                     <div class="card-body" style="text-align: center; background-color: #b2e0cb;">
                         <p style="color:#ff0000;">Agendamentos a partir da data abaixo:</p><div id="divDtFutura"></div>
@@ -68,9 +76,11 @@
     div.innerText =  today ;
 
     function agendamento() {
+        let medic = document.getElementById("medico").value
+        localStorage.setItem('Médico', medic)
         let data = document.getElementById("dtAgenda").value
         localStorage.setItem('Consulta', data)
-        alert(`Agendamento Realizado para a data: ${data}`)
+        alert(`Consulta agendada para: ${data} Tipo de Médico: ${medic}`)
     }
 </script>
 </html>
