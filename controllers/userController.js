@@ -87,6 +87,7 @@ router.post('/atualizar', (req, res) => {
 })
 
 router.get('/agendamento', (req, res) => {
+    
     res.render('agendamento')
 })
 
