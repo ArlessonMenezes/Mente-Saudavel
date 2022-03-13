@@ -1,12 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const Paciente = require('../models/Paciente');
-const adminAuth = require('../middleware/adminAuth');
 const bcrypt = require('bcryptjs');
 const session = require('express-session');
+const adminAuth = require('../middleware/adminAuth')
 
 
-router.get('/', (rq, res) => {
+router.get('/', (req, res) => {
     res.render('login');
 });
 
@@ -19,18 +19,25 @@ router.post('/authenticate', (req, res) => {
     let email = req.body.lemail;
     let senha = req.body.lsenha;
     
-    Paciente.findOne({ where: { email: email } }).then(user => {
+    Paciente.findOne({ where: { email } }).then(user => {
         if(user != undefined) {
+        
             let correct = bcrypt.compareSync(senha, user.senha)
 
             if(correct) {
                 req.session.user = {
                     id: user.id,
                     nome: user.nome,
-                    email: user.email
+                    email: user.email,
+                    superuser: user.superuser
+                }
+
+                if (user.superuser === 'true') {
+                        res.render('superUser', { users: user.nome})
+                } else {
+                    res.render('admin', { id: req.session.user.id, nome: req.session.user.nome }); //Lembrar de enviar para a pagina de escolha;
                 }
                 
-                res.render('admin', { id: req.session.user.id, nome: req.session.user.nome }); //Lembrar de enviar para a pagina de escolha;
             } else {
                 res.send("<script>alert('Senha inválida'); window.location.href = '/'; </script>"); 
             }

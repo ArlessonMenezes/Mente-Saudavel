@@ -46,8 +46,13 @@ const Paciente = connection.define('users', {
     crm: { 
         type: Sequelize.TEXT,
               allowNull: false
+    },
+    superuser: { 
+        type: Sequelize.TEXT,
+              allowNull: true
     }
+    
 })
 
-Paciente.sync({ force: false });
+Paciente.sync({ alter: true });
 module.exports = Paciente;

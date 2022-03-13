@@ -21,6 +21,7 @@ router.post('/cadastro/save', (req, res) => {
     let cpf = req.body.cpf;
     let cfp = req.body.cfp;
     let crm = req.body.crm;
+    let admin = req.body.admin;
 
     Paciente.create({
         nome: nome,
@@ -33,7 +34,8 @@ router.post('/cadastro/save', (req, res) => {
         estado: estado,
         cpf: cpf,
         cfp: cfp,
-        crm: crm
+        crm: crm,
+        admin: admin
     }).then(() => {
         res.send("<script>alert('Usuário cadastrado'); window.location.href = '/'; </script>"); 
     }).catch(() => {
