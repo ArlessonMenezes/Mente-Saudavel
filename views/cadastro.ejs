@@ -240,8 +240,8 @@
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script>
       const el = document.getElementById('inputAddress')
-      el.addEventListener("keyup", get1);
-      async function get1(){
+      el.addEventListener("keyup", get);
+      async function get(){
         let cep = document.getElementById('inputAddress').value
         if (cep.length == 9) {
           const getvalues = await axios.get(`https://ws.apicep.com/cep/${cep}.json`).then(res=>{return res;})    
@@ -251,22 +251,12 @@
         } 
       }
       function set(res,cep){
-        alert(`Buscando CEP ${cep}....`)
+        //alert(`Buscando CEP ${cep}....`)
         document.getElementById('inputCity').value = res.data.city
         document.getElementById('inputState').value = res.data.state
         document.getElementById('district').value = res.data.district
         document.getElementById('address').value = res.data.address
       }
-      function get(){
-        let cep = document.getElementById('inputAddress').value
-         axios.get(`https://ws.apicep.com/cep/${cep}.json`)
-        .then( res =>{
-          alert(`Enviando consulta do CEP ${cep}....`)
-          document.getElementById('inputCity').value = res.data.city
-          document.getElementById('state').value = res.data.state
-          document.getElementById('district').value = res.data.district
-          document.getElementById('address').value = res.data.address
-        })}
         
     </script>
 
