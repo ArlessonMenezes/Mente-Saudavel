@@ -33,11 +33,20 @@
                       </div>
                       <div class="col-md-6">
                         <label for="inputPassword4" class="form-label">Matricula</label>
-                        <input type="text" class="form-control" id="matricula" placeholder="campo voltado para instituições de ensino" name="matricula">
+                        <input type="text" class="form-control" id="matricula" placeholder="ccampo voltado para instituições de ensino" name="matricula">
                       </div>
                     <div class="col-12">
-                      <label for="inputAddress" class="form-label">Endereço</label>
-                      <input type="text" class="form-control" id="inputAddress" placeholder="Ex: rua abc, número 123 - bairro..." name="endereco">
+                      <label for="inputAddress" class="form-label">CEP</label>
+                      <input type="text" class="form-control" id="inputAddress" placeholder="CEP : XXXXX-XXX" name="endereco">
+                    </div>
+                    
+                    <div class="col-md-6">
+                      <label for="address" class="form-label">Rua</label>
+                      <input type="text" class="form-control" id="address" name="address">
+                    </div>
+                    <div class="col-md-6">
+                      <label for="district" class="form-label">Bairro</label>
+                      <input type="text" class="form-control" id="district" name="district">
                     </div>
                     <div class="col-md-6">
                       <label for="inputCity" class="form-label">Cidade</label>
@@ -227,5 +236,38 @@
     }
 
 </script>
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+      const el = document.getElementById('inputAddress')
+      el.addEventListener("keyup", get1);
+      async function get1(){
+        let cep = document.getElementById('inputAddress').value
+        if (cep.length == 9) {
+          const getvalues = await axios.get(`https://ws.apicep.com/cep/${cep}.json`).then(res=>{return res;})    
+          set(getvalues,cep)
+        } else {
+          
+        } 
+      }
+      function set(res,cep){
+        alert(`Buscando CEP ${cep}....`)
+        document.getElementById('inputCity').value = res.data.city
+        document.getElementById('inputState').value = res.data.state
+        document.getElementById('district').value = res.data.district
+        document.getElementById('address').value = res.data.address
+      }
+      function get(){
+        let cep = document.getElementById('inputAddress').value
+         axios.get(`https://ws.apicep.com/cep/${cep}.json`)
+        .then( res =>{
+          alert(`Enviando consulta do CEP ${cep}....`)
+          document.getElementById('inputCity').value = res.data.city
+          document.getElementById('state').value = res.data.state
+          document.getElementById('district').value = res.data.district
+          document.getElementById('address').value = res.data.address
+        })}
+        
+    </script>
 
 </html>
