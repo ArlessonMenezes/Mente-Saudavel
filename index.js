@@ -31,6 +31,7 @@ const userController = require('./controllers/userController');
 const cadastroController = require('./controllers/cadastroController');
 const meetingController = require('./controllers/mettingController');
 const liveChatController = require('./controllers/liveChatController');
+const sugestoesController = require('./controllers/sugestoesController')
 const adminController = require('./controllers/adminController');
 
 //view engine
@@ -54,7 +55,9 @@ app.use('/', userController);
 app.use('/', cadastroController);
 app.use('/', meetingController);
 app.use('/', liveChatController);
-app.use('/', adminController)
+app.use('/', sugestoesController);
+app.use('/', adminController);
+
 
 //Servidor
 http.listen(3000, () => console.log('servidor ON'));

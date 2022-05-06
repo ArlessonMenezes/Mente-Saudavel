@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Paciente = require('../models/Paciente');
+const Sugestoes = require('../models/Sujestao');
 
 router.get('/indexAdmin', (req, res) => {
     res.render('indexAdmin')
@@ -14,7 +15,7 @@ router.get('/usuarios', (req, res) => {
 
 })
 
-router.post('/finduser', (req, res) =>{
+router.get('/finduser', (req, res) =>{
     let id = req.body.id;
 
     Paciente.findByPk(id).then(founduser =>{
@@ -95,6 +96,14 @@ router.post('/delete', (req, res) => {
         res.send('<script>alert("Usuário inválido!"); window.location.href = "/usuarios"</script>');
     
     }
+})
+
+router.get('/listar-sugestoes', async (req, res)  => { 
+    Sugestoes.findAll().then(sugest => {
+        res.render('listarSugestoes', { sugestoes: sugest })
+    }).catch(err => {
+        res.send(err)
+    })
 })
 
 module.exports = router;
