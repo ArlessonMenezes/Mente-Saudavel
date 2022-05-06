@@ -98,7 +98,7 @@ router.post('/delete', (req, res) => {
     }
 })
 
-router.get('/listar-sugestoes', async (req, res)  => { 
+router.get('/listar-sugestoes', (req, res)  => { 
     Sugestoes.findAll().then(sugest => {
         res.render('listarSugestoes', { sugestoes: sugest })
     }).catch(err => {
